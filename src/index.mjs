@@ -1,4 +1,4 @@
-// Purpose: Implement the package-specific, reviewable decision boundary.
+// Objectif : implémenter la frontière de décision métier propre au dépôt.
 export const FITS=["strong_fit","possible_fit","weak_fit","insufficient_evidence"];
 export function nafCode(value){const code=String(value??"").trim().toUpperCase();if(!/^\d{2}\.\d{2}[A-Z]$/.test(code))throw new TypeError("NAF code must look like 62.10Z");return code;}
 export function companyActivity(input){if(!/^\d{9}$/.test(String(input?.siren||""))||!input?.description||!input?.proposedCode)throw new TypeError("Activity needs a 9-digit SIREN, description and proposedCode");return{siren:String(input.siren),description:String(input.description).trim(),websiteEvidence:String(input.websiteEvidence||""),currentCode:input.currentCode?nafCode(input.currentCode):null,proposedCode:nafCode(input.proposedCode),observedAt:new Date(input.observedAt||Date.now()).toISOString()};}

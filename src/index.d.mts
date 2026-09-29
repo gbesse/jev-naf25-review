@@ -1,2 +1,2 @@
-// Purpose: Describe the public domain API.
+// Objectif : décrire les types de l’API métier publique.
 import type{JevProvider}from"./jev.mjs";export const FITS:readonly string[];export type CompanyActivity={siren:string;description:string;websiteEvidence:string;currentCode:string|null;proposedCode:string;observedAt:string};export type NafEntry={code:string;label:string;includes:string[];excludes:string[];sourceUrl:string;version:"NAF2025"};export function nafCode(value:unknown):string;export function companyActivity(input:any):CompanyActivity;export function nafEntry(input:any):NafEntry;export function assessNaf25(activity:any,entry:any,provider:JevProvider):Promise<any>;

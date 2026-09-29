@@ -1,5 +1,5 @@
-# How it decides
+# Comment la décision est prise
 
-SIREN, code syntax, candidate identity and dates are checked in code. Jev evaluates only how supplied activity evidence fits one official NAF 2025 entry. Every result remains a review hypothesis.
+Le SIREN, la syntaxe du code, l’identité du candidat et les dates sont vérifiés dans le code. Jev évalue uniquement l’adéquation des preuves fournies à une rubrique officielle. Chaque résultat reste à examiner.
 
-The exact questions and criteria are versioned beside the call in [src/index.mjs](../src/index.mjs). Synthetic demo probabilities are illustrative. Calibrate review thresholds on representative labels before operational use.
+La question et les critères exacts sont versionnés dans [`src/index.mjs`](../src/index.mjs). Les probabilités de la démonstration sont synthétiques. Calibrez les seuils de revue sur des cas français annotés et représentatifs avant tout usage opérationnel.

@@ -1,3 +1,3 @@
-# Contributing
+# Contribuer
 
-Open an issue before a large change. Keep identifiers, dates, arithmetic, candidate generation and action thresholds in ordinary code. Add representative French fixtures for semantic changes. Run `npm run validate` before submitting a pull request.
+Ouvrez une issue avant toute modification importante. Conservez les identifiants, dates, calculs, filtres de candidats et seuils d’action dans du code ordinaire. Ajoutez des cas français représentatifs pour toute évolution sémantique. Exécutez les commandes de validation du README avant une pull request.

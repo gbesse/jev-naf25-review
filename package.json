@@ -1,7 +1,7 @@
 {
   "name": "@gbesse/jev-naf25-review",
-  "version": "0.1.0",
-  "description": "Review a French company future NAF 2025 code against sourced activity evidence and official explanatory notes.",
+  "version": "0.1.1",
+  "description": "Vérifie le futur code NAF 2025 d’une entreprise à partir de preuves d’activité et des notes officielles.",
   "type": "module",
   "license": "MIT",
   "engines": {
