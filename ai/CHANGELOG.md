@@ -1,5 +1,10 @@
 # Journal des modifications assistées par IA
 
+## 0.1.2 — 2026-09-29
+
+- Ajout d’un exemple exécutable, lisible et directement copiable dans le README.
+- Données synthétiques françaises, fournisseur Jev simulé et assertion de non-régression.
+
 ## 0.1.1 — 2026-09-29
 
 - Documentation, métadonnées et parcours contributeur entièrement francisés.

@@ -2,7 +2,7 @@
 
 **Vérifie le futur code NAF 2025 d’une entreprise à partir de preuves d’activité et des notes officielles.**
 
-[![Tests](https://github.com/gbesse/jev-naf25-review/actions/workflows/test.yml/badge.svg)](https://github.com/gbesse/jev-naf25-review/actions/workflows/test.yml) [MIT](LICENSE) · Node.js 22+ · v0.1.1 · Documentation française
+[![Tests](https://github.com/gbesse/jev-naf25-review/actions/workflows/test.yml/badge.svg)](https://github.com/gbesse/jev-naf25-review/actions/workflows/test.yml) [MIT](LICENSE) · Node.js 22+ · v0.1.2 · Documentation française
 
 Le dépôt confronte l’activité principale observée, le futur code proposé dans Sirene et une rubrique officielle de la NAF 2025. Il produit une hypothèse d’adéquation et un niveau de preuve.
 
@@ -16,6 +16,67 @@ npm run demo
 ```
 
 La démonstration utilise uniquement des données et probabilités synthétiques. Elle n’effectue aucun appel réseau et ne constitue pas une mesure de qualité de Jev.
+
+## Exemple exécutable
+
+Cet exemple vérifie un code NAF 2025 proposé pour un éditeur de logiciels. Il utilise un fournisseur Jev simulé : aucune clé API ni connexion réseau n’est nécessaire. L’assertion intégrée fait échouer la commande si le comportement attendu change.
+
+Le code complet de [`examples/demo.mjs`](examples/demo.mjs) est directement copiable :
+
+```js
+// Objectif : démontrer la frontière de décision sans appel réseau.
+import assert from "node:assert/strict";
+import { assessNaf25 } from "../src/index.mjs";
+import { createFakeProvider } from "../src/jev.mjs";
+const provider = createFakeProvider(() => ({
+  model: "jev-1.13.0",
+  answers: {
+    fit: {
+      type: "choice",
+      choice: "possible_fit",
+      probabilities: {
+        strong_fit: 0.25,
+        possible_fit: 0.65,
+        weak_fit: 0.05,
+        insufficient_evidence: 0.05,
+      },
+      confidence: 0.65,
+    },
+    evidence: {
+      type: "score",
+      score: 2,
+      probabilities: { 0: 0.02, 1: 0.08, 2: 0.82, 3: 0.08 },
+      confidence: 0.82,
+    },
+  },
+  usage: { input_tokens: 50, output_tokens: 0 },
+}));
+const resultat = await assessNaf25(
+  {
+    siren: "123456789",
+    description: "Édition de logiciels de gestion en ligne",
+    proposedCode: "62.10Z",
+    observedAt: "2026-09-29",
+  },
+  {
+    code: "62.10Z",
+    label: "Activités de programmation informatique",
+    includes: ["développement de logiciels"],
+    sourceUrl: "https://www.insee.fr/fr/information/8617910",
+  },
+  provider,
+);
+assert.equal(resultat.fit, "possible_fit");
+console.log(JSON.stringify(resultat, null, 2));
+```
+
+Lancez-le avec :
+
+```sh
+npm run demo
+```
+
+Résultat à repérer : `fit: possible_fit`.
 
 ## Utilisation de la bibliothèque
 

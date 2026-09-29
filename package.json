@@ -1,6 +1,6 @@
 {
   "name": "@gbesse/jev-naf25-review",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Vérifie le futur code NAF 2025 d’une entreprise à partir de preuves d’activité et des notes officielles.",
   "type": "module",
   "license": "MIT",
