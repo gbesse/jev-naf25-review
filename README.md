@@ -2,7 +2,7 @@
 
 **Vérifie le futur code NAF 2025 d’une entreprise à partir de preuves d’activité et des notes officielles.**
 
-[![Tests](https://github.com/gbesse/jev-naf25-review/actions/workflows/test.yml/badge.svg)](https://github.com/gbesse/jev-naf25-review/actions/workflows/test.yml) [MIT](LICENSE) · Node.js 22+ · v0.1.2 · Documentation française
+[![Tests](https://github.com/gbesse/jev-naf25-review/actions/workflows/test.yml/badge.svg)](https://github.com/gbesse/jev-naf25-review/actions/workflows/test.yml) [MIT](LICENSE) · Node.js 22+ · v0.1.3 · Documentation française
 
 Le dépôt confronte l’activité principale observée, le futur code proposé dans Sirene et une rubrique officielle de la NAF 2025. Il produit une hypothèse d’adéquation et un niveau de preuve.
 
@@ -73,10 +73,20 @@ console.log(JSON.stringify(resultat, null, 2));
 Lancez-le avec :
 
 ```sh
-npm run demo
+npm run demo:principal
 ```
 
 Résultat à repérer : `fit: possible_fit`.
+
+### Cas limite à tester
+
+Un code candidat différent du code proposé est écarté sans modèle. Le code se trouve dans [`examples/cas-limite.mjs`](examples/cas-limite.mjs).
+
+```sh
+npm run demo:limite
+```
+
+Résultat à repérer : `fit: different_candidate · appels Jev: 0`. La commande `npm run demo` exécute les deux exemples.
 
 ## Utilisation de la bibliothèque
 
