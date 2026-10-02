@@ -2,7 +2,7 @@
 
 **Vérifie le futur code NAF 2025 d’une entreprise à partir de preuves d’activité et des notes officielles.**
 
-[![Tests](https://github.com/gbesse/jev-naf25-review/actions/workflows/test.yml/badge.svg)](https://github.com/gbesse/jev-naf25-review/actions/workflows/test.yml) [MIT](LICENSE) · Node.js 22+ · v0.1.3 · Documentation française
+[![Tests](https://github.com/gbesse/jev-naf25-review/actions/workflows/test.yml/badge.svg)](https://github.com/gbesse/jev-naf25-review/actions/workflows/test.yml) [MIT](LICENSE) · Node.js 22+ · v0.1.4 · Documentation française
 
 Le dépôt confronte l’activité principale observée, le futur code proposé dans Sirene et une rubrique officielle de la NAF 2025. Il produit une hypothèse d’adéquation et un niveau de preuve.
 
@@ -116,6 +116,12 @@ TYPESAFE_API_KEY=... node scripts/live-smoke.mjs
 ```
 
 N’envoyez jamais de secret, de donnée personnelle ni de dossier sensible non expurgé. Évaluez le comportement sur un jeu représentatif de cas français avant tout usage opérationnel.
+
+## Parcours comparatif
+
+`npm run demo:parcours` produit un rapport JSON partageable pour **jev-naf25-review** : le scénario principal et la frontière déterministe. Chaque scénario garde sa sortie propre et échoue si son assertion ne passe plus. Les données et probabilités sont synthétiques ; aucun appel Jev n’est effectué.
+
+Cette vue permet de comparer rapidement les chemins de décision et de choisir quel exemple adapter à vos propres données sourcées.
 
 ## Validation
 
