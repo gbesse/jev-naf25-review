@@ -1,6 +1,6 @@
 {
   "name": "@gbesse/jev-naf25-review",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Vérifie le futur code NAF 2025 d’une entreprise à partir de preuves d’activité et des notes officielles.",
   "type": "module",
   "license": "MIT",
@@ -27,7 +27,8 @@
     "demo": "node examples/demo.mjs && node examples/cas-limite.mjs",
     "validate": "npm run check && npm run typecheck && npm test && npm run demo",
     "demo:principal": "node examples/demo.mjs",
-    "demo:limite": "node examples/cas-limite.mjs"
+    "demo:limite": "node examples/cas-limite.mjs",
+    "demo:parcours": "node examples/parcours-comparatif.mjs"
   },
   "devDependencies": {
     "typescript": "5.9.3"
