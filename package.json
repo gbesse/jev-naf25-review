@@ -12,6 +12,10 @@
       "types": "./src/index.d.mts",
       "import": "./src/index.mjs"
     },
+    "./portfolio": {
+      "types": "./src/portfolio.d.mts",
+      "import": "./src/portfolio.mjs"
+    },
     "./jev": {
       "types": "./src/jev.d.mts",
       "import": "./src/jev.mjs"
@@ -24,11 +28,12 @@
     "check": "node scripts/check.mjs",
     "typecheck": "tsc --noEmit --strict --target ES2022 --module NodeNext docs/public-api-types.mts",
     "test": "node --test",
-    "demo": "node examples/demo.mjs && node examples/cas-limite.mjs",
+    "demo": "node examples/demo.mjs && node examples/cas-limite.mjs && node examples/portfolio.mjs",
     "validate": "npm run check && npm run typecheck && npm test && npm run demo",
     "demo:principal": "node examples/demo.mjs",
     "demo:limite": "node examples/cas-limite.mjs",
-    "demo:parcours": "node examples/parcours-comparatif.mjs"
+    "demo:parcours": "node examples/parcours-comparatif.mjs",
+    "demo:portfolio": "node examples/portfolio.mjs"
   },
   "devDependencies": {
     "typescript": "5.9.3"
