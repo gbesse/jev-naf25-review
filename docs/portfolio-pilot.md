@@ -64,3 +64,43 @@ traitement du portefeuille, pas monétiser la consultation d'un code.
 Décision de poursuite : au moins un pilote payé et une économie de temps constatée
 sans perte de qualité métier. Risques : fenêtre courte et faible nombre de dossiers
 réellement ambigus. Aucune prospection n'est incluse ni effectuée.
+
+## Langues et publication — FR
+
+`--lang fr|en|es` ou `reviewPortfolio({ ..., lang })` choisit les questions de revue et les instructions générées, jamais la langue des descriptions utilisateur. Les erreurs de validation et du CLI sont disponibles dans les trois langues. `--out` réserve le nouveau fichier privé avant création du fournisseur et traitement ; une erreur retire seulement ce fichier créé, sans écraser une destination existante. Cette version est un pilote technique publié, pas un pilote terrain validé.
+
+## English — Portfolio review pilot
+
+The [official Insee page](https://www.insee.fr/fr/information/8181066) describes APE codes changing on January 1, 2027 and consultation/rectification during 2026. This tool organizes a review; it neither assigns codes nor infers legal consequences.
+
+Input: JSON activities or strict CSV with `siren,description,proposedCode,observedAt`; optional `currentCode,websiteEvidence`. Missing descriptions/codes remain queued without a provider call. SIREN is checked as nine digits, not verified against Sirene. References require `code,label,sourceUrl,retrievedAt` with optional `includes,excludes`, real dates and HTTPS Insee URLs. The tool does not fetch URLs or authenticate supplied notes. Keep dated source exports separately and verify the actual official entry yourself.
+
+The default CLI performs zero network calls. `--fixtures` uses caller-supplied synthetic answers indexed by SIREN. Live use requires explicit `--live --max-decisions N`; keys stay in private ignored environment files. Budgets count logical decisions, including failures; the existing client can make up to three HTTP attempts per decision, so this is not a money ceiling. No live call was needed for this release.
+
+Every row requires human review, even `strong_fit`. Thin evidence, missing references, provider failures and budget-deferred cases are prioritized. Reports contain IDs, codes, dates and evidence/reference hashes, never raw customer evidence or provider error bodies. IDs may remain sensitive. `--out` reserves a new private mode-600 file before creating the provider and processing; existing files and symlinks are refused. On failure only that created file is removed. Without `--out`, output goes to stdout. `--lang fr|en|es` or library `lang` selects generated questions and prompts without translating user data.
+
+```sh
+npm run demo:portfolio -- en
+node bin/jev-naf25-review.mjs portfolio --input portfolio.csv --entries entries.json --out report.json --lang en
+```
+
+No multi-user review UI, Sirene retrieval or rectification submission is included. Probabilities are not calibrated against real dossiers. Next validation, not achieved here: a cabinet pilot with independently annotated cases, measured review time and priority errors compared with the free official consultation; retain an independent holdout. Commercial value remains unproven and no outreach was performed.
+
+## Español — Piloto de revisión de portafolio
+
+La [página oficial Insee](https://www.insee.fr/fr/information/8181066) describe cambios APE el 1 de enero de 2027 y consulta/rectificación durante 2026. La herramienta organiza una revisión; no asigna códigos ni deduce consecuencias jurídicas.
+
+Entrada: actividades JSON o CSV estricto `siren,description,proposedCode,observedAt`; opcionales `currentCode,websiteEvidence`. Descripciones/códigos ausentes quedan pendientes sin llamada. Se comprueban nueve dígitos SIREN, no su existencia en Sirene. Referencias: `code,label,sourceUrl,retrievedAt` y opcionales `includes,excludes`, fechas reales y URL HTTPS Insee. No se descargan URL ni autentican notas suministradas. Conserve exportaciones fechadas y verifique la rúbrica oficial.
+
+El CLI predeterminado no realiza llamadas. `--fixtures` usa respuestas sintéticas del usuario indexadas por SIREN. Modo real exige `--live --max-decisions N`; claves en un entorno privado ignorado por Git. El presupuesto cuenta decisiones lógicas, incluidos errores; el cliente puede hacer hasta tres intentos HTTP por decisión, no es un límite monetario. Esta publicación no necesitó llamadas reales.
+
+Cada fila exige revisión humana incluso con `strong_fit`. Se priorizan pruebas insuficientes, referencias ausentes, errores y casos diferidos por presupuesto. Informes con identificadores, códigos, fechas y hashes, sin pruebas textuales ni errores del proveedor. Los identificadores pueden ser sensibles. `--out` reserva un archivo nuevo privado 600 antes de crear el proveedor y procesar; rechaza archivos y enlaces existentes. Ante un fallo solo elimina ese archivo creado. Sin `--out`, escribe stdout. `--lang fr|en|es` o `lang` de biblioteca elige preguntas e instrucciones generadas sin traducir datos del usuario.
+
+```sh
+npm run demo:portfolio -- es
+node bin/jev-naf25-review.mjs portfolio --input portafolio.csv --entries rubricas.json --out informe.json --lang es
+```
+
+Sin interfaz multiusuario, descarga Sirene ni envío de rectificación. Probabilidades no calibradas con expedientes reales. Validación futura aún no realizada: piloto con un gabinete, casos anotados independientemente, tiempo y errores de prioridad comparados con la consulta oficial gratuita y un holdout independiente. Valor comercial no demostrado; sin contactos comerciales.
+
+FR : `evidenceScore` conserve les valeurs fractionnaires entre 0 et 3 ; EN: `evidenceScore` retains fractional values between 0 and 3; ES: `evidenceScore` conserva valores fraccionarios entre 0 y 3. [TypeSafe Score](https://docs.typesafe.ai/primitives/score).
