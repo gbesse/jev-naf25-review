@@ -90,6 +90,24 @@ Résultat à repérer : `fit: different_candidate · appels Jev: 0`. La commande
 
 ## Utilisation de la bibliothèque
 
+### Revue de portefeuille
+
+Le sous-module `@gbesse/jev-naf25-review/portfolio` expose `reviewPortfolio` et
+`parsePortfolioCsv`. Il valide tout le lot avant les appels, borne les décisions,
+conserve les références datées et ordonne les dossiers à examiner. Même une
+adéquation forte reste soumise à confirmation humaine.
+
+```sh
+npm run demo:portfolio
+node bin/jev-naf25-review.mjs portfolio --input portefeuille.csv --entries rubriques.json --out rapport.json
+```
+
+Ce précontrôle est hors ligne par défaut. Le rapport privé omet les descriptions
+d'activité ; une destination existante n'est jamais écrasée. Consultez le
+[format d'import, les budgets et les critères du pilote](docs/portfolio-pilot.md).
+La récupération Sirene, l'interface multi-utilisateur et la rectification ne sont
+pas incluses. Aucun gain sur dossiers réels n'est revendiqué.
+
 Importez les fonctions métier depuis `@gbesse/jev-naf25-review`. Fournissez soit `createJevClient()` depuis l’export `./jev`, soit `createFakeProvider()` pour les tests hors ligne.
 
 Les noms de l’API JavaScript restent stables pour préserver la compatibilité avec les versions précédentes. La documentation, les exemples et les explications destinées aux utilisateurs sont en français.
@@ -135,3 +153,11 @@ npm run demo
 La CI exécute ces vérifications sous Node.js 22 et 24.
 
 Projet indépendant, sans affiliation avec TypeSafe AI ni avec l’administration française. Consultez la [documentation de l’API Jev](https://docs.typesafe.ai/api) et les [limites du modèle](https://docs.typesafe.ai/model-jaggedness/jev-1.13).
+
+## Portfolio FR / EN / ES
+
+FR : Le pilote de portefeuille est disponible : JSON/CSV, références datées, budget explicite et revue humaine obligatoire. `--lang fr|en|es` choisit les questions générées ; fichiers privés réservés avant traitement. [Guide](docs/portfolio-pilot.md).
+
+EN: The portfolio pilot is available: JSON/CSV, dated references, explicit budget and mandatory human review. `--lang fr|en|es` selects generated questions; private files reserved before processing. [Guide](docs/portfolio-pilot.md).
+
+ES: Piloto de portafolio disponible: JSON/CSV, referencias fechadas, presupuesto explícito y revisión humana obligatoria. `--lang fr|en|es` elige preguntas generadas; archivos privados reservados antes de procesar. [Guía](docs/portfolio-pilot.md).

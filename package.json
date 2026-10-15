@@ -1,6 +1,6 @@
 {
   "name": "@gbesse/jev-naf25-review",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Vérifie le futur code NAF 2025 d’une entreprise à partir de preuves d’activité et des notes officielles.",
   "type": "module",
   "license": "MIT",
@@ -11,6 +11,10 @@
     ".": {
       "types": "./src/index.d.mts",
       "import": "./src/index.mjs"
+    },
+    "./portfolio": {
+      "types": "./src/portfolio.d.mts",
+      "import": "./src/portfolio.mjs"
     },
     "./jev": {
       "types": "./src/jev.d.mts",
@@ -24,11 +28,12 @@
     "check": "node scripts/check.mjs",
     "typecheck": "tsc --noEmit --strict --target ES2022 --module NodeNext docs/public-api-types.mts",
     "test": "node --test",
-    "demo": "node examples/demo.mjs && node examples/cas-limite.mjs",
+    "demo": "node examples/demo.mjs && node examples/cas-limite.mjs && node examples/portfolio.mjs",
     "validate": "npm run check && npm run typecheck && npm test && npm run demo",
     "demo:principal": "node examples/demo.mjs",
     "demo:limite": "node examples/cas-limite.mjs",
-    "demo:parcours": "node examples/parcours-comparatif.mjs"
+    "demo:parcours": "node examples/parcours-comparatif.mjs",
+    "demo:portfolio": "node examples/portfolio.mjs"
   },
   "devDependencies": {
     "typescript": "5.9.3"
